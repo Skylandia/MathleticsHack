@@ -44,6 +44,10 @@ function getQuestionType(question)
 	if (question.length == 5 && question[0] == 'Half' && question[1] == 'of' && isNumber(question[2]) && question[3] == '=' && question[4] == '')
 		return QType.L4;
 	
+	if (question.length == 7 && question[0] == 'How' && question[1] == 'many' && (question[3] == 'in' || question[3] == 'is'))
+		return QType.L5;
+	if (question.length == 4 && (question[1] == '=' || question[2] == '='))
+		return QType.L5;
 	
 	console.log('unknown question type: ' + question);
 }
@@ -98,10 +102,76 @@ function getAnswer(questionType, question)
 			return eval(question);
 			
 		case QType.L5:
-			return;
+			if (question.length == 7) {
+				let qstr = '(';
+				qstr += question[4];
+				qstr += '*';
+				switch (question[5]) {
+					case 'hours':
+						qstr += 3600;
+						break;
+					case 'minutes':
+						qstr += 60;
+						break;
+					case 'seconds':
+						qstr += 1;
+						break;
+				}
+				qstr += ')/';
+				switch (question[2]) {
+					case 'hours':
+						qstr += 3600;
+						break;
+					case 'minutes':
+						qstr += 60;
+						break;
+					case 'seconds':
+						qstr += 1;
+						break;
+				}
+				return eval(qstr).toFixed(5);
+			}
+			else if (question[1] == '=' || question[2] == '=') {
+				if (question[2] == '=') {
+					question.reverse();
+					[question[2], question[3]] = [question[3], question[2]];
+				}
+				let qstr = '(';
+				if (question[0].includes('mm')) {
+					qstr += question[0].substring(0, question[0].length-2);
+					qstr += '*0.001)';
+				} else if (question[0].includes('cm')) {
+					qstr += question[0].substring(0, question[0].length-2);
+					qstr += '*0.01)';
+				} else if (question[0].includes('km')) {
+					qstr += question[0].substring(0, question[0].length-2);
+					qstr += '*1000)';
+				} else if (question[0].includes('m')) {
+					qstr += question[0].substring(0, question[0].length-1);
+					qstr += '*1)';
+				}
+				switch (question[3]) {
+					case 'mm':
+						qstr += '*1000';
+						break;
+					case 'cm':
+						qstr += '*100';
+						break;
+					case 'm':
+						qstr += '*1';
+						break;
+					case 'km':
+						qstr += '*0.001';
+						break;
+				}
+				return eval(qstr).toFixed(5);	
+			}
 			
 		case QType.L6:
-			return;
+			question[1] = '*'
+			question[3] = '';
+			question.join('');
+			return eval(question);
 			
 		case QType.L7:
 			return;
@@ -143,12 +213,12 @@ function format(question)
 
 function inputAnswer(answer)
 {
-	document.getElementsByClassName('questions-input-adjustment questions-input-width-v3')[0].value = answer;
+	document.getElementsByClassName('questions-input-adjustment')[0].value = answer;
 }
 
 function getQuestion()
 {
-	return document.getElementsByClassName('questions-text-alignment whiteTextWithShadow question-size-v4')[0].innerText;
+	return document.getElementsByClassName('questions-text-alignment')[0].innerText;
 }
 
 function isOperator(part)
@@ -181,9 +251,7 @@ Level 4:
 Half of [a] = [ans]
 
 Level 5:
-How many [minutes/hours] is [a] [seconds/minutes] [ans]
-How many [minutes/seconds] in [a] [hours/minutes] [ans]
-How many minutes in [a] hours [ans]
+How many [hours/minutes/seconds] [is/in] [a] [hours/minutes/seconds] [ans]
 [ans] [unit] = [a] [unit]
 [a] [unit] = [ans] [unit]
 
