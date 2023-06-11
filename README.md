@@ -3,7 +3,7 @@
 1. Ensure you have a compatible web browser installed (e.g. Mozilla Firefox).
 2. This script is not compatible with Google Chrome.
 ## Instructions
-1. Visit the releases page and copy the contents of script.js to your clipboard.
+1. Copy the contents of paste.js to your clipboard.
 2. Navigate to the Live Mathletics homepage.
 3. Open the console using the keyboard shortcut **CTRL + SHIFT + I**.
 4. Paste your clipboard into the console and press **ENTER**.
