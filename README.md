@@ -10,6 +10,16 @@
 5. Start Live Mathletics on any supported level.
 6. Press **e** to have the script enter the answer into the answer box.
 7. Press enter to submit the answer :)
-
+## Supported Levels
+- [x] Level 1
+- [x] Level 2
+- [ ] Level 3
+- [ ] Level 4
+- [ ] Level 5
+- [ ] Level 6
+- [ ] Level 7
+- [ ] Level 8
+- [ ] Level 9
+- [ ] Level 10
 ## Disclaimer
 The author and the GitHub repository owners are not responsible for any consequences resulting from the usage of this script. Use at your own risk.
