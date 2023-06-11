@@ -1,4 +1,4 @@
-# Live Mathletics Answer Script
+# AutoAnswer for Live Mathletics
 ## Prerequisites
 1. Ensure you have a compatible web browser installed (e.g. Mozilla Firefox).
 2. This script is not compatible with Google Chrome.
