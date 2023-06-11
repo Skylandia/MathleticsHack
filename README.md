@@ -3,10 +3,10 @@
 1. Ensure you have a compatible web browser installed (e.g. Mozilla Firefox).
 2. This script is not compatible with Google Chrome.
 ## Instructions
-1. Copy the contents of paste.js to your clipboard.
+1. Copy the contents of [paste.js](https://raw.githubusercontent.com/Skylandia/MathleticsHack/main/paste.js) to your clipboard.
 2. Navigate to the Live Mathletics homepage.
 3. Open the console using the keyboard shortcut **CTRL + SHIFT + I**.
-4. Paste your clipboard into the console and press **ENTER**.
+4. Paste the script into the console and press **ENTER**.
 5. Start Live Mathletics on any supported level.
 6. Press **e** to have the script enter the answer into the answer box.
 7. Press enter to submit the answer :)
